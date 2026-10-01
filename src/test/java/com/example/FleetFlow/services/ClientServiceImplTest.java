@@ -4,6 +4,7 @@ import com.example.FleetFlow.DTO.RequestClientDTO;
 import com.example.FleetFlow.Mapper.ClientMapper;
 import com.example.FleetFlow.models.Client;
 import com.example.FleetFlow.repositories.ClientRepository;
+import com.example.FleetFlow.serviceInterfaces.services.ClientServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

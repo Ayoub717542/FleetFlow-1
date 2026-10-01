@@ -1,6 +1,5 @@
 package com.example.FleetFlow.controllers;
 
-
 import com.example.FleetFlow.DTO.ResponceChauffeurDTO;
 import com.example.FleetFlow.DTO.RequestChauffeurDTO;
 
@@ -10,7 +9,6 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -64,7 +62,7 @@ public class ChauffeurController {
         return ResponseEntity.ok(rs);
     }
 
-    @GetMapping("/afficherChauffeursByPermis/{permisType}")
+    @GetMapping("/afficherChauffeursByPermis")
     public ResponseEntity<Page<ResponceChauffeurDTO>> displayChauffeurs(
             @RequestParam (defaultValue = "1") int pageNumber,
             @RequestParam (defaultValue = "5") int pagrSize,

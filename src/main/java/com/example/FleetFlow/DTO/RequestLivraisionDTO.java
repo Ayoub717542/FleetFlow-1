@@ -25,7 +25,7 @@ public class RequestLivraisionDTO {
     @NotBlank(message = "Adresse de destination is required")
     private String adresseDestination;
 
-    private LivraisionStatut livraisionStatut;
+    private LivraisionStatut statut;
 
     @NotNull(message = "Client ID is required")
     private Long clientId;

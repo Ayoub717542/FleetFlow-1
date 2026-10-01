@@ -1,4 +1,4 @@
-    package com.example.FleetFlow.services;
+    package com.example.FleetFlow.serviceInterfaces.services;
 
     import com.example.FleetFlow.DTO.RequestVehiculeDTO;
     import com.example.FleetFlow.DTO.ResponceVehiculeDTO;

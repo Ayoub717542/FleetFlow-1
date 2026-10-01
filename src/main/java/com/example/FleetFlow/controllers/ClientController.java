@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,15 +25,11 @@ public class ClientController {
         return ResponseEntity.ok(clientService.ajouterClient(client));
     }
     @GetMapping("/afficherClients")
-    public ResponseEntity<Page<ResponceClientDTO>> displayClients(
-            @RequestParam(defaultValue = "1") int pageNumber,
-            @RequestParam(defaultValue = "5") int pageSize,
-            @RequestParam(defaultValue = "username") String sortBy,
-            @RequestParam(defaultValue = "asc") String sortDir
-    ) {
-        Sort sort = sortDir.equalsIgnoreCase("asc") ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
-        return ResponseEntity.ok(clientService.afficherClients(PageRequest.of(pageNumber-1, pageSize, sort)));
+    public ResponseEntity<Page<ResponceClientDTO>> displayClients(Pageable pageable) {
+        Page<ResponceClientDTO> rs = clientService.afficherClients(pageable);
+        return ResponseEntity.ok(rs);
     }
+
     @DeleteMapping("/supprimerClient/{id}")
     public ResponseEntity<Boolean> deleteClient(@PathVariable Long id) {
         return ResponseEntity.ok(clientService.deleteClient(id));

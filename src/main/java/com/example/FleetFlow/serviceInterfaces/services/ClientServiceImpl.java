@@ -1,4 +1,4 @@
-    package com.example.FleetFlow.services;
+    package com.example.FleetFlow.serviceInterfaces.services;
 
     import com.example.FleetFlow.DTO.ResponceClientDTO;
     import com.example.FleetFlow.DTO.RequestClientDTO;
@@ -43,6 +43,8 @@
             clientRepository.delete(client);
             return true;
         }
+
+
             public Page<ResponceClientDTO> afficherClients(Pageable pageable){
                 return clientRepository.findAll(pageable)
                         .map(client -> {

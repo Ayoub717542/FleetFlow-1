@@ -2,13 +2,10 @@ package com.example.FleetFlow.controllers;
 
 import com.example.FleetFlow.DTO.RequestLivraisionDTO;
 import com.example.FleetFlow.DTO.ResponceLivraisionDTO;
-import com.example.FleetFlow.Mapper.LivraisionMapper;
 import com.example.FleetFlow.enums.LivraisionStatut;
 import com.example.FleetFlow.serviceInterfaces.LivraisonService;
-import com.example.FleetFlow.services.LivraisonServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 
 import org.springframework.data.domain.Sort;
@@ -37,11 +34,11 @@ public class LivraisonsController {
             @RequestParam long vehiculeId) {
         return ResponseEntity.ok(livraisonService.assigner(id,chauffeurId,vehiculeId));
     }
-
     @PutMapping("/{id}/statut")
     public ResponseEntity<ResponceLivraisionDTO>  updateStatut(
             @PathVariable Long id,
             @RequestParam LivraisionStatut statut) {
+
         return ResponseEntity.ok(livraisonService.updateStatut(id,statut));
     }
 
@@ -52,6 +49,7 @@ public class LivraisonsController {
             @RequestParam(defaultValue = "id") String sortBy,
             @RequestParam(defaultValue = "asc") String sortDir
     ) {
+
         Sort sort = sortDir.equalsIgnoreCase("asc") ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
         return ResponseEntity.ok(livraisonService.getAll(PageRequest.of(pageNumber-1, pageSize, sort)));
     }
@@ -77,7 +75,6 @@ public class LivraisonsController {
             @RequestParam(defaultValue = "5") int pageSize,
             @RequestParam(defaultValue = "id") String sortBy,
             @RequestParam(defaultValue = "asc") String sortDir
-
     ) {
         Sort sort = sortDir.equalsIgnoreCase("asc")? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
             Page<ResponceLivraisionDTO> rs = livraisonService.getbystatut(statut,PageRequest.of(pageNumber-1,pageSize,sort));
